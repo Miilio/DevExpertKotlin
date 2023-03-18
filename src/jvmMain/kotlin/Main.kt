@@ -12,7 +12,7 @@ import androidx.compose.ui.window.application
 @Preview
 fun App() {
     val text = remember { mutableStateOf("") }
-    val message = "Hello ${text.value}"
+    //val message = "Hello ${text.value}"
     val buttonEnable = text.value.isNotEmpty()
 
     MaterialTheme {
@@ -24,7 +24,7 @@ fun App() {
                 }
             )
 
-            Text(message)
+            Text(buildMessage(text.value))
 
             Button(onClick = { text.value = "" }, enabled = buttonEnable) {
                 Text("Clean")
@@ -33,6 +33,8 @@ fun App() {
 
     }
 }
+
+fun buildMessage(text: String) = "Hello $text"
 
 fun main() = application {
     Window(onCloseRequest = ::exitApplication) {
