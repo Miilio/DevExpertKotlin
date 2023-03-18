@@ -12,6 +12,8 @@ import androidx.compose.ui.window.application
 @Preview
 fun App() {
     val text = remember { mutableStateOf("") }
+    val message = "Hello ${text.value}"
+    val buttonEnable = text.value.isNotEmpty()
 
     MaterialTheme {
         Column {
@@ -22,11 +24,9 @@ fun App() {
                 }
             )
 
-            Text("Hello ${text.value}")
+            Text(message)
 
-            Button(onClick = {
-                text.value = ""
-            }) {
+            Button(onClick = { text.value = "" }, enabled = buttonEnable) {
                 Text("Clean")
             }
         }
