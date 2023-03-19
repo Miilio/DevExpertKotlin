@@ -8,10 +8,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 
+
+
 class AppState {
     val text = mutableStateOf("")       //remember al estar fuera de compose no es necesario
-    val buttonEnable: Boolean
-        get() = text.value.isNotEmpty()     //Cada vez que se llama se usa el valor de text nuevo (es dinámico)
+    fun buttonEnable() = text.value.isNotEmpty()
 }
 
 @Composable
@@ -28,7 +29,7 @@ fun App(appState: AppState) {
 
             Text(buildMessage(appState.text.value))
 
-            Button(onClick = { appState.text.value = "" }, enabled = appState.buttonEnable) {
+            Button(onClick = { appState.text.value = "" }, enabled = appState.buttonEnable()) {
                 Text("Clean")
             }
         }
